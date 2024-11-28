@@ -4,7 +4,9 @@ Welcome to the **Food Recipe Website**, a platform where food lovers can discove
 
 ---
 
+
 ## 🌟 Features
+
 1. **Home Page**  
    - Browse featured recipes.
    - Search for recipes by name or ingredients.
@@ -30,7 +32,13 @@ Welcome to the **Food Recipe Website**, a platform where food lovers can discove
 
 6. **Responsive Design**  
    - Fully responsive, ensuring a seamless experience on desktops, tablets, and mobile devices.
+   - Includes **authentication**, **authorization**, and **role-based access control** to manage different user permissions (e.g., admin vs regular users).
+
 
 ---
 
 ## 📂 Project Structure
+Home Page
+![Alt text](home.png "Home Page")
+Update Page
+![Alt text](recipe.png "Update Page")
