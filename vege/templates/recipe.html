@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card p-4 mb-4 shadow-lg">
+    <!-- Add Recipe Form -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Add Recipe</h2>
+        <div class="mb-3">
+            <label for="recipeName" class="form-label">Recipe Name</label>
+            <input type="text" name="recipe_name" id="recipeName" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="recipeDescription" class="form-label">Recipe Description</label>
+            <textarea name="recipe_description" id="recipeDescription" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="recipeImage" class="form-label">Recipe Image</label>
+            <input type="file" name="recipe_image" id="recipeImage" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Add Recipe</button>
+    </form>
+</div>
+
+<!-- Recipe Grid -->
+<div class="food-blog-grid d-flex flex-wrap gap-3">
+    {% for recipe in recipes %}
+    <div class="food-blog-card card shadow-lg" style="width: 18rem; height: 400px;">
+        <img src="/media/{{ recipe.recipe_image }}" alt="{{ recipe.recipe_name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ recipe.recipe_name }}</h5>
+            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; height: 80px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                {{ recipe.recipe_description }}
+            </p>
+            <div class="d-flex justify-content-between mt-auto">
+                <form action="/delete-recipe/{{ recipe.id }}/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                <form action="/update-recipe/{{ recipe.id }}/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-sm">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

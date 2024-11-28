@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Recipe Grid -->
+<div class="recipe-grid d-flex flex-wrap gap-3">
+    {% for recipe in recipes %}
+    <div class="recipe-card card shadow-lg" style="width: 18rem; height: 400px;">
+        <img src="/media/{{ recipe.recipe_image }}" alt="{{ recipe.recipe_name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ recipe.recipe_name }}</h5>
+            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; height: 80px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                {{ recipe.recipe_description }}
+            </p>
+            <p class="card-text"><small class="text-muted">Created by: {{ recipe.user.username }}</small></p> <!-- Added creator username -->
+        </div>
+    </div>
+    {% empty %}
+    <p>No recipes available at the moment. Please check back later!</p>
+    {% endfor %}
+</div>
+{% endblock %}
